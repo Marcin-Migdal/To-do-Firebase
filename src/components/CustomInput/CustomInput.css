@@ -1,0 +1,29 @@
+.custom-input.no-label {
+  margin-bottom: 1rem;
+}
+.custom-input.no-label .label {
+  margin-bottom: 5px;
+}
+
+.custom-input .p-float-label {
+  width: inherit;
+}
+
+.custom-input .p-inputtext {
+  background-color: inherit;
+  width: 100%;
+}
+
+.p-float-label input.p-filled ~ label,
+.p-float-label input:focus ~ label {
+  top: -0.6rem !important;
+}
+
+.custom-input .label {
+  display: inline-block;
+}
+
+.app.dark-mode .custom-input .p-inputtext {
+  color: white !important;
+  border-color: #85bae0;
+}

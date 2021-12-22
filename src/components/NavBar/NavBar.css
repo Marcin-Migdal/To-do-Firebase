@@ -1,0 +1,140 @@
+.nav-bar {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+  width: 100%;
+  padding: 0.35rem;
+  background-color: #85bae0;
+}
+
+.app.dark-mode .nav-bar {
+  background-color: transparent;
+  box-shadow: 0 2px 12px #6daedb;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  color: white;
+}
+
+.logo-container .logo-text {
+  margin-left: -15px;
+  font-size: 1.2rem;
+  font-weight: 400 !important;
+}
+
+.logo-container .logo-image {
+  height: 2.5rem;
+}
+
+.nav-bar-items {
+  display: flex;
+}
+
+.nav-bar .item {
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  height: 100%;
+  margin-right: 0.5rem;
+  padding: 0.35rem 0;
+  border-radius: 4px;
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.nav-bar .item:hover {
+  padding: 0.35rem 0.25rem;
+  background-color: #5da3d5;
+}
+
+.nav-bar .item:active {
+  background-color: #4998d0;
+  transition: 0.15s;
+}
+
+.app.dark-mode .nav-bar .item:hover {
+  padding: 0.35rem 0.25rem;
+  background-color: inherit;
+  border: 1px solid #85bae0;
+  box-shadow: 2px 1px 6px #6daedb;
+}
+
+.app.dark-mode .nav-bar .item:active {
+  background-color: inherit;
+  transition: 0.15s;
+}
+
+/* nav bar item width for polish text */
+.nav-bar .nav-bar-items.lng-pl .item.dark-mode:hover {
+  width: 14.3rem;
+}
+
+.nav-bar .nav-bar-items.lng-pl .item.lng:hover {
+  width: 7rem;
+}
+
+.nav-bar .nav-bar-items.lng-pl .item.history:hover {
+  width: 6.55rem;
+}
+
+.nav-bar .nav-bar-items.lng-pl .item.notes:hover {
+  width: 6.35rem;
+}
+
+.nav-bar .nav-bar-items.lng-pl .item.help:hover {
+  width: 6.1rem;
+}
+
+.nav-bar .nav-bar-items.lng-pl .item.log-out:hover {
+  width: 6.55rem;
+}
+/* end */
+
+/* nav bar item width for english text */
+.nav-bar .nav-bar-items.lng-en .item.dark-mode:hover {
+  width: 10.25rem;
+}
+
+.nav-bar .nav-bar-items.lng-en .item.lng:hover {
+  width: 9.25rem;
+}
+
+.nav-bar .nav-bar-items.lng-en .item.history:hover {
+  width: 6.25rem;
+}
+
+.nav-bar .nav-bar-items.lng-en .item.notes:hover {
+  width: 5.5rem;
+}
+
+.nav-bar .nav-bar-items.lng-en .item.help:hover {
+  width: 5rem;
+}
+
+.nav-bar .nav-bar-items.lng-en .item.log-out:hover {
+  width: 6.1rem;
+}
+/* end */
+
+.nav-bar .item .icon-container {
+  height: 100%;
+}
+
+.nav-bar .item .icon-container .icon {
+  color: white;
+  height: 100%;
+  width: 1.75rem;
+  margin-right: 0.25rem;
+}
+
+.nav-bar .item .text {
+  width: 100%;
+  overflow: hidden;
+  color: white;
+  white-space: nowrap;
+}

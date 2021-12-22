@@ -1,0 +1,35 @@
+.custom-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #85bae0;
+  border-color: #85bae0;
+}
+
+.custom-button:hover {
+  border-color: #348ccb;
+  background-color: #348ccb !important;
+}
+
+.custom-button:last-of-type {
+  margin-right: 0;
+}
+
+.custom-button span {
+  transition: 0.1s !important;
+}
+
+/* Outlined button */
+
+.p-button.p-button-outlined {
+  color: #71afda;
+  border: 1px solid #85bae0 !important;
+}
+
+.p-button.p-button-outlined:hover {
+  color: white !important;
+  background-color: #85bae0 !important;
+}

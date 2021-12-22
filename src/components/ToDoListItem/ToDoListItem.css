@@ -1,0 +1,181 @@
+.to-do .list .item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 50rem;
+  height: 2.5rem;
+  margin-bottom: 0.35rem;
+  border: 1px solid #aed1ea;
+  border-radius: 3px;
+  color: #71afda;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.to-do .list .item.selected {
+  background-color: #98c7e6;
+  color: white;
+  cursor: default;
+}
+
+.to-do .list .item.expanded {
+  align-items: flex-start !important;
+  height: 320px !important;
+  transition: 0.3s;
+}
+
+.to-do .list .item:hover:not(.selected) {
+  background-color: #c1ddf0;
+  border-color: #c1ddf0;
+  color: white;
+  transition: 0.3s;
+}
+
+.to-do .list .item .item-top-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2.4rem;
+  padding: 0.3rem;
+}
+
+.to-do .list .item .item-expanded-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 0 0.35rem 0.35rem;
+  overflow-y: scroll;
+}
+
+.to-do .list .item .item-expanded-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.to-do .list .item .item-expanded-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.to-do .list .item .item-expanded-container::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 30px;
+}
+
+.to-do .list .item .toggle-arrow-icon {
+  width: 1.7rem;
+  height: 1.7rem;
+  font-size: 1.75em;
+  margin-right: 0.3rem;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+}
+
+.to-do .list .item .toggle-arrow-icon:hover:not(.placeholder) {
+  color: #98c7e6;
+  background-color: #f2f2f2;
+}
+
+.app.dark-mode .to-do .list .item .toggle-arrow-icon:hover:not(.placeholder) {
+  border: 1px solid #c1ddf0;
+  color: white;
+  background-color: #71afda;
+}
+
+.to-do .list .item .name {
+  font-size: 1.45rem;
+  margin-top: -2px;
+  width: 80%;
+}
+
+.to-do .list .item .date {
+  width: 12%;
+  margin-right: 0.35rem;
+  font-size: 1.15rem;
+}
+
+.to-do .list .item .completed-btn {
+  border: 2px solid #c1ddf0;
+  border-radius: 3px;
+  background-color: white;
+  color: #71afda;
+  cursor: pointer;
+}
+
+.app.dark-mode .to-do .list .item .completed-btn {
+  border: 2px solid #c1ddf0;
+  background-color: #71afda;
+  color: white;
+}
+
+.to-do .list .item .item-top-container .completed-btn {
+  height: 1.8rem;
+  font-size: 1.4rem;
+  padding: 0 0.075rem;
+}
+
+.to-do .list .item .item-expanded-container .completed-btn {
+  height: 1.25rem !important;
+  font-size: 1rem !important;
+  padding: 0 0.075rem !important;
+}
+
+.to-do .list .item .completed-btn:hover {
+  background-color: #85bae0;
+  color: white;
+}
+
+.to-do .list .item .completed-btn:active {
+  background-color: #71afda;
+  color: white;
+  transform: scale(0.95);
+}
+
+.item-expanded-container .sub-list-item {
+  list-style: circle;
+  font-size: 1.2rem;
+}
+
+.item-expanded-container .sub-list-item > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.item-expanded-container .sub-list-item.completed > div > p {
+  position: relative;
+  display: inline-block;
+}
+
+.item-expanded-container .sub-list-item.completed > div > p > span {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0;
+  top: 50%;
+  background-color: white;
+  border: 2px solid #85bae0;
+  border-left: none;
+  border-right: none;
+  opacity: 0.85;
+}
+
+.item-expanded-container .custom-hr {
+  border: none;
+  outline: none;
+  height: 1px;
+  width: 100%;
+  background-color: white;
+}
+
+.item-expanded-container .section-container {
+  padding: 0.75rem 0 0.75rem 0.5rem;
+}
+
+.section-container .description {
+  display: block;
+  margin-left: 1.5rem;
+}
+
+.section-container .section-title {
+  margin-bottom: 0.25rem;
+}

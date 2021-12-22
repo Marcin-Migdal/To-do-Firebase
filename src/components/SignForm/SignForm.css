@@ -1,0 +1,30 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 37.5rem;
+  padding: 3.25rem 6rem 1rem 6rem;
+  box-shadow: 3px 3px 8px #6daedb;
+}
+
+.form-buttons-container {
+  display: flex;
+  width: 100%;
+}
+
+.form-buttons-container .custom-button {
+  margin-bottom: 0.5rem;
+}
+
+.sign-form-button {
+  width: 50%;
+}
+
+.sign-form-layout .form-container .custom-input-with-state {
+  margin: 16px 0 3px 0;
+}
+
+.sign-form-layout .form-container .custom-input-with-state:first-child {
+  margin-top: 0 !important;
+}

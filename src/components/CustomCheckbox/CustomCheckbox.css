@@ -1,0 +1,8 @@
+.checkbox-input-container {
+  height: fit-content;
+  margin-bottom: 1rem;
+}
+
+.checkbox-input-container .p-checkbox-label {
+  margin-right: 0.5rem;
+}
