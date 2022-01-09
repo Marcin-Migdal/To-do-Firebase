@@ -3,16 +3,14 @@ import { useEffect, useState } from 'react';
 import { fb } from 'service';
 
 export const useAuth = () => {
-  const [authUser, setAuthUser] = useState();
+  const [authUser, setAuthUser] = useState(undefined);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(fb.auth.auth, user => {
-      if (user) {
-        setAuthUser(user);
-      } else {
-        setAuthUser(null);
-      }
+      if (user) setAuthUser(user);
+      else setAuthUser(null);
     });
+
     return unSubscribe;
   }, []);
 

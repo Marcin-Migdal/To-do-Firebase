@@ -14,3 +14,4 @@ export * from './NavBar';
 export * from './History';
 export * from './HelpModal';
 export * from './Notes';
+export * from './LoadingIndicator';

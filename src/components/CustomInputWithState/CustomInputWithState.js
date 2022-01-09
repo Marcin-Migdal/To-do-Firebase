@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './CustomInputWithState.css';
 
-export const CustomInputWithState = ({ placeholder, className = '', label, name, onChange, onBlur, defaultValue }) => {
+export const CustomInputWithState = ({ placeholder, className = '', label, name, onChange, onBlur, defaultValue, handleKeyPress }) => {
   const { t } = useTranslation();
-  const [localValue, setLocalValue] = useState(defaultValue);
+  const [value, setValue] = useState(defaultValue);
 
   const handleChange = target => {
-    setLocalValue(target.value);
+    setValue(target.value);
     onChange && onChange(target);
   };
 
@@ -23,9 +23,10 @@ export const CustomInputWithState = ({ placeholder, className = '', label, name,
           placeholder={placeholder}
           id={name}
           name={name}
-          value={localValue}
+          value={value || ''}
           onChange={e => handleChange(e.target)}
           onBlur={e => handleBlur(e.target)}
+          onKeyPress={handleKeyPress}
         />
         {!placeholder && <label htmlFor={name}>{t(label)}</label>}
       </span>

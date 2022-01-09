@@ -29,22 +29,30 @@
   background-color: inherit;
 }
 
+.to-do .top-container .basic-inputs-position-container {
+  position: absolute;
+  top: -42px;
+  left: -14rem;
+  transition: 0.5s;
+  background-color: transparent;
+  z-index: 2;
+}
+
+.to-do.with-description .top-container .basic-inputs-position-container {
+  top: -120px;
+}
+
 .to-do .top-container .basic-inputs {
   display: flex;
   align-items: center;
   width: 28rem;
   height: 44px;
   padding: 2px 0;
-  background-color: inherit;
-  z-index: 2;
-  transition: 0.5s;
-  position: absolute;
-  top: -42px;
-  left: -14rem;
+  background-color: white;
 }
 
-.to-do.with-description .top-container .basic-inputs {
-  top: -120px;
+.app.dark-mode .to-do .top-container .basic-inputs {
+  background-color: #1a1a1a;
 }
 
 .to-do .to-do-description {
@@ -62,8 +70,16 @@
   overflow: hidden;
 }
 
-.to-do .to-do-description::-webkit-scrollbar {
-  width: 8px;
+.to-do .to-do-description.wide {
+  width: 25.15rem;
+}
+
+.to-do .to-do-description.lng-en {
+  width: 18.6rem;
+}
+
+.to-do .to-do-description.lng-en.wide {
+  width: 23.05rem;
 }
 
 .to-do.with-description .to-do-description {
@@ -78,8 +94,8 @@
   border-color: #85bae0;
 }
 
-.to-do .to-do-description.wide {
-  width: 25.15rem;
+.to-do .to-do-description::-webkit-scrollbar {
+  width: 8px;
 }
 
 .to-do .top-container .text-input {

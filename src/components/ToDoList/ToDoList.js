@@ -9,7 +9,7 @@ import { formatDate } from 'helpers/formatDate';
 import './ToDoList.css';
 
 export const ToDoList = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const ref = useRef();
   const [toDoArray, setToDoArray] = useState([]);
   const [toDoFormData, setToDoFormData] = useState({ name: '', description: '' });
@@ -145,19 +145,24 @@ export const ToDoList = () => {
     <>
       <div className={`to-do ${descriptionInputEnabled ? 'with-description' : ''} no-select`}>
         <div className="top-container">
-          <div className="basic-inputs">
-            <GoChevronDown className={`toggle-arrow-icon ${descriptionInputEnabled ? 'expanded' : ''}`} onClick={toggleDescriptionInput} />
-            <CustomInput
-              name="name"
-              floatingLabel
-              placeholder="To do"
-              className="text-input"
-              onChange={handleChange}
-              value={toDoFormData?.name}
-              handleKeyPress={handlePressEnter}
-            />
-            <CustomButton tabIndex="-1" outlined label="Add" className="btn" onClick={addToDo} disabled={!toDoFormData?.name} />
-            {selectedToDo && <EditToDoModal editData={selectedToDo} handleEditToDo={updatedToDo => handleEditToDo(updatedToDo)} />}
+          <div className="basic-inputs-position-container">
+            <div className="basic-inputs">
+              <GoChevronDown
+                className={`toggle-arrow-icon ${descriptionInputEnabled ? 'expanded' : ''}`}
+                onClick={toggleDescriptionInput}
+              />
+              <CustomInput
+                name="name"
+                floatingLabel
+                placeholder="To do"
+                className="text-input"
+                onChange={handleChange}
+                value={toDoFormData?.name}
+                handleKeyPress={handlePressEnter}
+              />
+              <CustomButton tabIndex="-1" outlined label="Add" className="btn" onClick={addToDo} disabled={!toDoFormData?.name} />
+              {selectedToDo && <EditToDoModal editData={selectedToDo} handleEditToDo={updatedToDo => handleEditToDo(updatedToDo)} />}
+            </div>
           </div>
           <InputTextarea
             rows={1}
@@ -169,7 +174,7 @@ export const ToDoList = () => {
               e.code === 'Enter' && addToDo(e);
             }}
             disabled={!descriptionInputEnabled}
-            className={`to-do-description ${toDoArray?.length > 0 ? 'wide' : ''}`}
+            className={`to-do-description ${i18n.language === 'pl' ? 'lng-pl' : 'lng-en'} ${toDoArray?.length > 0 ? 'wide' : ''}`}
           />
         </div>
 

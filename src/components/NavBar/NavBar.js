@@ -3,20 +3,24 @@ import { RiFileHistoryFill } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
+import { firebaseSignOut, updateUserConfig } from 'api/fireBaseApi';
 import logo from '../../resourse/images/logo-white-no-text.svg';
-import { firebaseSignOut } from 'api/signOut';
 import { HelpModal } from 'components';
 import { pages } from 'utils/pagesUrl';
-
+import { useToDo } from 'context';
 import './NavBar.css';
 
-export const NavBar = ({ toggleDarkMode, darkMode: isDarkMode }) => {
-  const { t } = useTranslation();
+export const NavBar = ({ toggleDarkMode, darkMode }) => {
+  const { t, i18n } = useTranslation();
+  const { userConfig, setUserConfig } = useToDo();
   const history = useHistory();
-  const { i18n } = useTranslation();
 
   const handleLanguageChange = () => {
-    i18n.changeLanguage(Object.keys(i18n.options.resources).find(lng => lng !== i18n.language));
+    const lng = Object.keys(i18n.options.resources).find(lng => lng !== i18n.language);
+
+    updateUserConfig(userConfig.uid, { lng: lng });
+    setUserConfig({ ...userConfig, lng: lng });
+    i18n.changeLanguage(lng);
   };
 
   const goToPage = page => {
@@ -28,8 +32,8 @@ export const NavBar = ({ toggleDarkMode, darkMode: isDarkMode }) => {
     {
       widthClass: 'dark-mode',
       onClick: toggleDarkMode,
-      Icon: isDarkMode ? MdDarkMode : MdOutlineDarkMode,
-      title: t(`Dark mode: ${isDarkMode ? 'On' : 'Off'}`),
+      Icon: darkMode ? MdDarkMode : MdOutlineDarkMode,
+      title: t(darkMode ? 'Dark mode' : 'Light mode'),
     },
     {
       widthClass: 'lng',

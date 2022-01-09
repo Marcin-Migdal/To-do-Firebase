@@ -1,23 +1,22 @@
+import { useHistory } from 'react-router';
+
+import { handleGoogleSingIn } from 'api/fireBaseApi';
 import logo from '../../resourse/images/logo.svg';
 import { CustomButton } from 'components';
-import { useHistory } from 'react-router';
-import { signIn } from 'api/signIn';
-import { fb } from 'service';
 import './SignForm.css';
+import { pages } from 'utils/pagesUrl';
+import { useState } from 'react';
 
-export const SignForm = ({ children, isSigningIn = false }) => {
+export const SignForm = ({ children, handleAuth, lng }) => {
   const history = useHistory();
-
-  const handleSingIn = () => {
-    signIn(fb.auth);
-  };
+  const [isSigningIn] = useState(window.location.pathname.match(pages.login));
 
   const handleSingInClick = () => {
-    isSigningIn ? console.log('login') : history.push('/login');
+    isSigningIn ? handleAuth() : history.push('/login');
   };
 
   const handleSingUpClick = () => {
-    isSigningIn ? history.push('/signup') : console.log('sign up');
+    !isSigningIn ? handleAuth() : history.push('/signup');
   };
 
   return (
@@ -29,7 +28,12 @@ export const SignForm = ({ children, isSigningIn = false }) => {
           <CustomButton outlined={!isSigningIn} className="sign-form-button" label="Login" onClick={handleSingInClick} />
           <CustomButton outlined={isSigningIn} className="sign-form-button" label="Sign up" onClick={handleSingUpClick} />
         </div>
-        <CustomButton outlined className="google-sign-in-button" label="Sign in using your Google account" onClick={handleSingIn} />
+        <CustomButton
+          outlined
+          className="google-sign-in-button"
+          label="Sign in using your Google account"
+          onClick={() => handleGoogleSingIn(lng)}
+        />
       </div>
     </div>
   );
