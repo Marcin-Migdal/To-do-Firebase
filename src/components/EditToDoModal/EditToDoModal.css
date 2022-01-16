@@ -24,6 +24,7 @@
 }
 
 .sub-list .content {
+  position: relative;
   display: flex;
   align-items: center;
   width: 60%;
@@ -45,6 +46,14 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sub-list .content .error-label {
+  position: absolute;
+  left: 92%;
+  width: 55%;
+  font-size: 0.775rem;
+  color: red;
 }
 
 .app.dark-mode .sub-list .content input {

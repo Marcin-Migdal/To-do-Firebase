@@ -1,5 +1,6 @@
 .custom-input-with-state {
   width: 100%;
+  position: relative;
 }
 
 .custom-input-with-state .p-float-label {
@@ -9,4 +10,29 @@
 
 .custom-input-with-state .p-float-label .p-inputtext {
   width: inherit;
+}
+.custom-input-with-state.error .p-float-label .p-inputtext {
+  border-color: red !important;
+}
+
+.custom-input-with-state .p-float-label label:is(.input-error-label) {
+  top: -10px !important;
+  font-size: 0.775rem;
+}
+
+.input-error-label,
+.input-error {
+  font-size: 0.775rem;
+  color: red !important;
+}
+
+.input-error {
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+}
+
+.input-error.top {
+  bottom: unset;
+  top: -1.25rem;
 }

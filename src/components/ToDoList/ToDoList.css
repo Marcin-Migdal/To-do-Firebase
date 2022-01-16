@@ -31,7 +31,7 @@
 
 .to-do .top-container .basic-inputs-position-container {
   position: absolute;
-  top: -42px;
+  top: -47px;
   left: -14rem;
   transition: 0.5s;
   background-color: transparent;
@@ -39,7 +39,7 @@
 }
 
 .to-do.with-description .top-container .basic-inputs-position-container {
-  top: -120px;
+  top: -127px;
 }
 
 .to-do .top-container .basic-inputs {
@@ -55,51 +55,13 @@
   background-color: #1a1a1a;
 }
 
-.to-do .to-do-description {
-  width: 19.45rem;
-  height: 0;
-  border: 1px solid #ced4da;
-  outline: none;
-  resize: none;
-  background-color: inherit;
-  z-index: 1;
-  position: absolute;
-  top: -40px;
-  left: -11.65rem;
-  transition: 0.25s;
-  overflow: hidden;
-}
-
-.to-do .to-do-description.wide {
-  width: 25.15rem;
-}
-
-.to-do .to-do-description.lng-en {
-  width: 18.6rem;
-}
-
-.to-do .to-do-description.lng-en.wide {
-  width: 23.05rem;
-}
-
-.to-do.with-description .to-do-description {
-  top: -72px;
-  height: 70px;
-  transition: 0.5s;
-  overflow-y: auto;
-}
-
-.app.dark-mode .to-do-description {
-  color: white !important;
-  border-color: #85bae0;
-}
-
 .to-do .to-do-description::-webkit-scrollbar {
   width: 8px;
 }
 
 .to-do .top-container .text-input {
   margin-left: 0.5rem !important;
+  margin-bottom: 0 !important;
   width: 14rem;
 }
 
@@ -145,4 +107,39 @@
   color: #98c7e6;
   background-color: inherit;
   border: 3px solid #98c7e6;
+}
+
+.to-do .to-do-description {
+  width: 19.45rem;
+  position: absolute;
+  top: -40px;
+  left: -11.65rem;
+  transition: 0.25s;
+}
+
+.to-do.with-description .to-do-description {
+  top: -79px;
+  transition: 0.35s;
+}
+
+.to-do .to-do-description .custom-textarea {
+  height: 0;
+  transition: 0.25s;
+  resize: none;
+}
+
+.to-do.with-description .to-do-description .custom-textarea {
+  height: 70px;
+}
+
+.to-do .to-do-description.wide {
+  width: 25.15rem;
+}
+
+.to-do .to-do-description.lng-en {
+  width: 18.6rem;
+}
+
+.to-do .to-do-description.lng-en.wide {
+  width: 23.05rem;
 }

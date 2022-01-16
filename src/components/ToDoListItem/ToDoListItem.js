@@ -53,9 +53,11 @@ export const ToDoListItem = ({ toDo, selectedToDo, expandedToDo, handleSelect, t
                               <p>
                                 {subToDo.name} <span />
                               </p>
-                              <div className="completed-btn" onClick={e => completeSubToDo(toDo, subToDo)}>
-                                <GoCheck />
-                              </div>
+                              {!subToDo?.completed && (
+                                <div className="completed-btn" onClick={() => completeSubToDo(toDo, subToDo)}>
+                                  <GoCheck />
+                                </div>
+                              )}
                             </div>
                           </li>
                         );

@@ -3,7 +3,19 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './CustomInputWithState.css';
 
-export const CustomInputWithState = ({ placeholder, className = '', label, name, onChange, onBlur, defaultValue, handleKeyPress }) => {
+export const CustomInputWithState = ({
+  type,
+  placeholder,
+  className = '',
+  label,
+  name,
+  onChange,
+  onBlur,
+  defaultValue,
+  handleKeyPress,
+  error,
+  errorPosition = 'bottom',
+}) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(defaultValue);
 
@@ -17,10 +29,11 @@ export const CustomInputWithState = ({ placeholder, className = '', label, name,
   };
 
   return (
-    <div className={`${className} custom-input-with-state`}>
+    <div className={`${className} custom-input-with-state ${error ? 'error' : ''}`}>
       <span className="p-float-label">
         <InputText
-          placeholder={placeholder}
+          type={type}
+          placeholder={t(placeholder)}
           id={name}
           name={name}
           value={value || ''}
@@ -28,7 +41,15 @@ export const CustomInputWithState = ({ placeholder, className = '', label, name,
           onBlur={e => handleBlur(e.target)}
           onKeyPress={handleKeyPress}
         />
-        {!placeholder && <label htmlFor={name}>{t(label)}</label>}
+        {!placeholder ? (
+          error ? (
+            <label className="input-error-label">{t(error)}</label>
+          ) : (
+            <label htmlFor={name}>{t(label)}</label>
+          )
+        ) : (
+          error && <div className={`input-error ${errorPosition}`}>{t(error)}</div>
+        )}
       </span>
     </div>
   );

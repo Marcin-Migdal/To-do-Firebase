@@ -85,6 +85,9 @@
   font-size: 1.45rem;
   margin-top: -2px;
   width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .to-do .list .item .date {
@@ -114,7 +117,7 @@
 }
 
 .to-do .list .item .item-expanded-container .completed-btn {
-  height: 1.25rem !important;
+  height: 1.35rem !important;
   font-size: 1rem !important;
   padding: 0 0.075rem !important;
 }

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 export const ToDoContext = createContext();
 
-export const ToDoProvider = ({ children, userAuth }) => {
+export const ToDoProvider = ({ children, userAuth, toastRef }) => {
   const { i18n } = useTranslation();
   const [userConfig, setUserConfig] = useState(undefined);
 
@@ -25,11 +25,15 @@ export const ToDoProvider = ({ children, userAuth }) => {
     setConfig();
   }, [userAuth]);
 
-  return <ToDoContext.Provider value={{ userConfig, setUserConfig }}>{children}</ToDoContext.Provider>;
+  const showToast = (summary, detail, severity = 'success', life = 1000) => {
+    toastRef.current.show({ severity: severity, summary: summary, detail: detail, life: life });
+  };
+
+  return <ToDoContext.Provider value={{ userConfig, setUserConfig, showToast, toastRef }}>{children}</ToDoContext.Provider>;
 };
 
 export const useToDo = () => {
-  const { userConfig, setUserConfig } = useContext(ToDoContext);
+  const { userConfig, setUserConfig, showToast, toastRef } = useContext(ToDoContext);
 
-  return { userConfig, setUserConfig };
+  return { userConfig, setUserConfig, showToast, toastRef };
 };

@@ -1,5 +1,5 @@
 export const pages = {
-  login: '/login',
+  signIn: '/signIn',
   signup: '/signup',
   history: '/history',
   notes: '/notes',

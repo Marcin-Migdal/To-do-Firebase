@@ -1,6 +1,6 @@
 export * from './App';
 export * from './SignForm';
-export * from './Login';
+export * from './SignIn';
 export * from './SignUp';
 export * from './ToDoList';
 export * from './CustomInputWithState';
@@ -15,3 +15,4 @@ export * from './History';
 export * from './HelpModal';
 export * from './Notes';
 export * from './LoadingIndicator';
+export * from './CustomTextarea';
