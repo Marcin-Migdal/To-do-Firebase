@@ -1,0 +1,31 @@
+.textarea-position-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.textarea-position-container label {
+  display: inline-block;
+  margin-bottom: 5px !important;
+}
+
+.custom-textarea {
+  width: 100%;
+  outline: none;
+  background-color: inherit;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.app.dark-mode .custom-textarea {
+  color: white !important;
+  border-color: #85bae0;
+}
+
+.textarea-input-error {
+  position: absolute;
+  left: 0;
+  bottom: -1.2rem;
+  width: 19rem;
+  color: red;
+  font-size: 0.775rem;
+}

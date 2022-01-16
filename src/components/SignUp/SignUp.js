@@ -1,40 +1,77 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
+import { validateSignUp } from 'helpers/validateAuth';
 import { SignForm, CustomInputWithState } from 'components';
 import { handleSignUpWithEmail } from 'api/fireBaseApi';
+import { validationSchema } from './formikConfig';
+import { useToDo } from 'context';
+import { validateValue } from 'helpers/validateValue';
 
 export const SignUp = () => {
+  const { showToast } = useToDo();
   const { i18n } = useTranslation();
-  const [formData, setFormData] = useState({ name: '', email: '', password: '', rePassword: '' });
+  const [formData, setFormData] = useState({ userName: '', email: '', password: '', verifyPassword: '' });
+  const [errors, setErrors] = useState();
 
-  const handleChangeFormData = target => {
+  const handleChangeFormData = async target => {
     const { name, value } = target;
+
     setFormData({ ...formData, [name]: value });
+    validateValue(target, validationSchema, errors, e => setErrors(e), formData?.password);
   };
 
   const handleKeyPress = e => {
     if (e?.key === 'Enter') {
       const { name, value } = e.target;
-      handleSignUpWithEmail({ ...formData, [name]: value }, i18n.language);
+      handleSignUp({ ...formData, [name]: value });
     }
   };
 
-  const handleSignUp = () => handleSignUpWithEmail(formData, i18n.language);
+  const handleSignUp = async (_formData = formData) => {
+    const errors = await validateSignUp(Object.keys(formData), _formData, validationSchema);
+    setErrors(errors);
+
+    !errors && handleSignUpWithEmail(_formData, i18n.language, handleSignUpError);
+  };
+
+  const handleSignUpError = (name, message) => {
+    if (name === 'internal') {
+      showToast('Error', message, 'error');
+      return;
+    }
+    setErrors({ ...errors, [name]: message });
+  };
 
   return (
-    <SignForm handleAuth={handleSignUp} lng={i18n.language}>
-      <CustomInputWithState label="Username" name="name" onBlur={target => handleChangeFormData(target)} handleKeyPress={handleKeyPress} />
-      <CustomInputWithState label="Email" name="email" onBlur={target => handleChangeFormData(target)} handleKeyPress={handleKeyPress} />
+    <SignForm handleAuth={handleSignUp} lng={i18n.language} disableForm={!!errors}>
       <CustomInputWithState
-        label="Password"
-        name="password"
+        error={errors?.userName}
+        label="Username"
+        name="userName"
         onBlur={target => handleChangeFormData(target)}
         handleKeyPress={handleKeyPress}
       />
       <CustomInputWithState
+        error={errors?.email}
+        label="Email"
+        name="email"
+        onBlur={target => handleChangeFormData(target)}
+        handleKeyPress={handleKeyPress}
+      />
+      <CustomInputWithState
+        error={errors?.password}
+        label="Password"
+        name="password"
+        type="password"
+        onBlur={target => handleChangeFormData(target)}
+        handleKeyPress={handleKeyPress}
+      />
+      <CustomInputWithState
+        error={errors?.verifyPassword}
         label="Repeat password"
-        name="rePassword"
+        name="verifyPassword"
+        type="password"
         onBlur={target => handleChangeFormData(target)}
         handleKeyPress={handleKeyPress}
       />

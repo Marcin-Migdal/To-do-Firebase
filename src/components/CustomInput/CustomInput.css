@@ -1,3 +1,7 @@
+.custom-input {
+  position: relative;
+}
+
 .custom-input.no-label {
   margin-bottom: 1rem;
 }
@@ -26,4 +30,22 @@
 .app.dark-mode .custom-input .p-inputtext {
   color: white !important;
   border-color: #85bae0;
+}
+
+.input-error-label,
+.input-error {
+  font-size: 0.775rem;
+  color: red !important;
+}
+
+.input-error {
+  width: 18rem;
+  position: absolute;
+  bottom: -1.1rem;
+  left: 0;
+}
+
+.input-error.top {
+  bottom: unset;
+  top: -1.25rem;
 }

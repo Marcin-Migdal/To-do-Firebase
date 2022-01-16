@@ -1,20 +1,24 @@
+import { useEffect, useRef, useState } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import { useEffect, useRef, useState } from 'react';
 
-import { CustomButton, EditToDoModal, CustomInput, ToDoListItem } from 'components';
-import { InputTextarea } from 'primereact/inputtextarea';
+import { CustomButton, EditToDoModal, CustomInput, ToDoListItem, CustomTextarea } from 'components';
+import { validationSchema } from './formikConfig';
 import { formatDate } from 'helpers/formatDate';
 import './ToDoList.css';
+import { validateValue } from 'helpers/validateValue';
 
 export const ToDoList = () => {
-  const { t, i18n } = useTranslation();
   const ref = useRef();
+  const { t, i18n } = useTranslation();
+
   const [toDoArray, setToDoArray] = useState([]);
   const [toDoFormData, setToDoFormData] = useState({ name: '', description: '' });
   const [selectedToDo, setSelectedToDo] = useState(undefined);
   const [expandedToDo, setExpandedToDo] = useState(undefined);
+  const [errors, setErrors] = useState();
+
   const [descriptionInputEnabled, setDescriptionInputEnabled] = useState(false);
 
   useEffect(() => {
@@ -117,9 +121,11 @@ export const ToDoList = () => {
     setDescriptionInputEnabled(!descriptionInputEnabled);
   };
 
-  const handleChange = target => {
+  const handleChange = async target => {
     const { name, value } = target;
+
     setToDoFormData({ ...toDoFormData, [name]: value });
+    validateValue(target, validationSchema, errors, e => setErrors(e));
   };
 
   const completeSubToDo = (editedToDo, subToDo) => {
@@ -152,24 +158,33 @@ export const ToDoList = () => {
                 onClick={toggleDescriptionInput}
               />
               <CustomInput
+                error={errors?.name}
                 name="name"
-                floatingLabel
                 placeholder="To do"
                 className="text-input"
+                errorPosition="top"
                 onChange={handleChange}
                 value={toDoFormData?.name}
                 handleKeyPress={handlePressEnter}
               />
-              <CustomButton tabIndex="-1" outlined label="Add" className="btn" onClick={addToDo} disabled={!toDoFormData?.name} />
+              <CustomButton
+                tabIndex="-1"
+                outlined
+                label="Add"
+                className="btn"
+                onClick={addToDo}
+                disabled={!toDoFormData?.name.trim() || errors}
+              />
               {selectedToDo && <EditToDoModal editData={selectedToDo} handleEditToDo={updatedToDo => handleEditToDo(updatedToDo)} />}
             </div>
           </div>
-          <InputTextarea
+          <CustomTextarea
             rows={1}
             name="description"
+            error={errors?.description}
             placeholder={t('Description')}
             value={toDoFormData.description}
-            onChange={e => handleChange(e.target)}
+            onChange={handleChange}
             onKeyPress={e => {
               e.code === 'Enter' && addToDo(e);
             }}

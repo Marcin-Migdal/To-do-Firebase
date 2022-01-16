@@ -7,6 +7,12 @@
   color: inherit;
 }
 
+.modal-header h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .modal-header .close-btn {
   display: flex;
   justify-content: center;
