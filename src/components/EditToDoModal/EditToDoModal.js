@@ -1,10 +1,10 @@
 import { CustomButton, CustomInput, CustomModal, CustomModalBody, CustomModalFooter, CustomModalHeader, CustomTextarea } from 'components';
 import { validateValue } from 'helpers/validateValue';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { MdRestoreFromTrash } from 'react-icons/md';
-import './EditToDoModal.css';
 import { validationSchema } from './formikConfig';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import './EditToDoModal.css';
 
 export const EditToDoModal = ({ editData, handleEditToDo }) => {
   const { t } = useTranslation();
@@ -32,17 +32,18 @@ export const EditToDoModal = ({ editData, handleEditToDo }) => {
       name: form.name.trim(),
       description: form.description.trim(),
       subList: form?.subList?.filter(item => !!item.name.trim()),
+      selected: true,
     };
 
     handleEditToDo(toDo);
     closeModal();
   };
 
-  const handleChangeState = async target => {
-    const { name, value } = target;
+  const handleChangeState = async e => {
+    const { name, value } = e.target;
 
     setForm({ ...form, [name]: value });
-    validateValue(target, validationSchema, errors, e => setErrors(e));
+    validateValue(e.target, validationSchema, errors, e => setErrors(e));
   };
 
   const handleChangeListState = async e => {
@@ -61,9 +62,9 @@ export const EditToDoModal = ({ editData, handleEditToDo }) => {
 
   return (
     <>
-      <CustomButton tabIndex={-1} outlined label="Edit" className="btn" onClick={() => setModalOpen(true)} />
-      <CustomModal modalOpen={modalOpen} closeModal={closeModal}>
-        {modalOpen && (
+      {editData && <CustomButton tabIndex={-1} outlined label="Edit" className="btn" onClick={() => setModalOpen(true)} />}
+      {modalOpen && (
+        <CustomModal modalOpen={modalOpen} closeModal={closeModal}>
           <form onSubmit={handleSubmit} style={{ width: '100%' }}>
             <CustomModalHeader title={`${t('Edit')} ${editData.name}`} closeModal={closeModal} />
             <CustomModalBody className="edit-to-do-modal">
@@ -81,9 +82,19 @@ export const EditToDoModal = ({ editData, handleEditToDo }) => {
                   {form.subList.map((item, index) => (
                     <li key={item.id}>
                       <div className="content">
-                        <input autoComplete="off" value={item.name} name={index} onChange={handleChangeListState} />
-                        <MdRestoreFromTrash className="icon" onClick={() => handleDelete(item)} />
-                        {errors?.[index] && <label className="error-label">{t(errors?.[index])}</label>}
+                        <input
+                          disabled={item.completed}
+                          autoComplete="off"
+                          value={item.name}
+                          name={index}
+                          onChange={handleChangeListState}
+                        />
+                        {!item.completed && (
+                          <>
+                            <MdRestoreFromTrash className="icon" onClick={() => handleDelete(item)} />
+                            {errors?.[index] && <label className="error-label">{t(errors?.[index])}</label>}
+                          </>
+                        )}
                       </div>
                     </li>
                   ))}
@@ -92,8 +103,8 @@ export const EditToDoModal = ({ editData, handleEditToDo }) => {
             </CustomModalBody>
             <CustomModalFooter okBtnText="Save" okBtnDisabled={!form?.name.trim() || errors} onCancel={closeModal} />
           </form>
-        )}
-      </CustomModal>
+        </CustomModal>
+      )}
     </>
   );
 };

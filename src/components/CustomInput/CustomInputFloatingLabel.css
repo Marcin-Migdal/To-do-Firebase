@@ -1,21 +1,21 @@
-.custom-input-with-state {
+.custom-input {
   width: 100%;
   position: relative;
 }
 
-.custom-input-with-state .p-float-label {
+.custom-input .p-float-label {
   width: inherit;
   margin-bottom: 5px;
 }
 
-.custom-input-with-state .p-float-label .p-inputtext {
+.custom-input .p-float-label .p-inputtext {
   width: inherit;
 }
-.custom-input-with-state.error .p-float-label .p-inputtext {
+.custom-input.error .p-float-label .p-inputtext {
   border-color: red !important;
 }
 
-.custom-input-with-state .p-float-label label:is(.input-error-label) {
+.custom-input .p-float-label label:is(.input-error-label) {
   top: -10px !important;
   font-size: 0.775rem;
 }

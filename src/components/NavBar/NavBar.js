@@ -1,30 +1,27 @@
-import { MdOutlineLanguage, MdDarkMode, MdOutlineDarkMode, MdOutlineSpeakerNotes, MdOutlineLogout } from 'react-icons/md';
+import { MdOutlineLanguage, MdDarkMode, MdOutlineDarkMode, MdOutlineLogout, MdPeopleAlt } from 'react-icons/md';
 import { RiFileHistoryFill } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
-import { firebaseSignOut, updateUserConfig } from 'api/fireBaseApi';
 import logo from '../../resourse/images/logo-white-no-text.svg';
+import { firebaseSignOut } from 'api/userApi';
 import { HelpModal } from 'components';
 import { pages } from 'utils/pagesUrl';
 import { useToDo } from 'context';
+
 import './NavBar.css';
 
-export const NavBar = ({ toggleDarkMode, darkMode }) => {
+export const NavBar = () => {
   const { t, i18n } = useTranslation();
-  const { userConfig, setUserConfig } = useToDo();
+  const { userConfig, toggleDarkMode, handleLanguageChange } = useToDo();
   const history = useHistory();
-
-  const handleLanguageChange = () => {
-    const lng = Object.keys(i18n.options.resources).find(lng => lng !== i18n.language);
-
-    updateUserConfig(userConfig.uid, { lng: lng });
-    setUserConfig({ ...userConfig, lng: lng });
-    i18n.changeLanguage(lng);
-  };
 
   const goToPage = page => {
     if (window.location.pathname === page) return;
+    if (pages.mainPage && !userConfig) {
+      history.push(pages.signIn);
+      return;
+    }
     history.push(page);
   };
 
@@ -32,8 +29,8 @@ export const NavBar = ({ toggleDarkMode, darkMode }) => {
     {
       widthClass: 'dark-mode',
       onClick: toggleDarkMode,
-      Icon: darkMode ? MdDarkMode : MdOutlineDarkMode,
-      title: t(darkMode ? 'Dark mode' : 'Light mode'),
+      Icon: userConfig?.darkMode ? MdDarkMode : MdOutlineDarkMode,
+      title: t(userConfig?.darkMode ? 'Dark mode' : 'Light mode'),
     },
     {
       widthClass: 'lng',
@@ -47,12 +44,12 @@ export const NavBar = ({ toggleDarkMode, darkMode }) => {
       Icon: RiFileHistoryFill,
       title: t('History'),
     },
-    {
-      widthClass: 'notes',
-      onClick: () => goToPage(pages.notes),
-      Icon: MdOutlineSpeakerNotes,
-      title: t('Notes'),
-    },
+    // {
+    //   widthClass: 'friends',
+    //   onClick: () => goToPage(pages.friends),
+    //   Icon: MdPeopleAlt,
+    //   title: t('Friends'),
+    // },
     {
       widthClass: 'log-out',
       onClick: () => firebaseSignOut(),
@@ -67,18 +64,19 @@ export const NavBar = ({ toggleDarkMode, darkMode }) => {
         <img className="logo-image" src={logo} alt="Logo" />
         <p className="logo-text">To Do</p>
       </div>
-
-      <div className={`nav-bar-items ${i18n.language === 'pl' ? 'lng-pl' : 'lng-en'}`}>
-        {navBarItems.map((item, index) => (
-          <div key={index} className={`item ${item.widthClass} no-select`} onClick={item.onClick}>
-            <div className="icon-container">
-              <item.Icon className="icon" />
+      {userConfig && (
+        <div className={`nav-bar-items ${i18n.language === 'pl' ? 'lng-pl' : 'lng-en'}`}>
+          {navBarItems.map((item, index) => (
+            <div key={index} className={`item ${item.widthClass} no-select`} onClick={item.onClick}>
+              <div className="icon-container">
+                <item.Icon className="icon" />
+              </div>
+              <p className="text">{item.title}</p>
             </div>
-            <p className="text">{item.title}</p>
-          </div>
-        ))}
-        <HelpModal />
-      </div>
+          ))}
+          <HelpModal />
+        </div>
+      )}
     </div>
   );
 };

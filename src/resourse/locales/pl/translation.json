@@ -17,7 +17,6 @@
   "Light mode": "Tryb dzienny",
   "Language": "Język",
   "History": "Historia",
-  "Notes": "Notatki",
   "Help": "Pomoc",
   "Close": "Zamknij",
   "Logout": "Wyloguj",
@@ -29,10 +28,43 @@
   "Required": "Wymagane",
   "Password must match": "Hasła muszą być takie same",
   "Email already in use": "Email jest zajęty",
+  "Username already in use": "Nazwa użytkownika jest zajęta",
   "Email not found": "Taki email nie istnieje",
   "Wrong password": "Niepoprawne hasło",
   "Error ocurred, please try again": "Wystąpił błąd, proszę spróbować ponownie",
   "Description can't be longer then 500 characters": "Opis nie może być dłuższy niż 500 znaków",
-  "Name can't be longer then 35 characters": "Nazwa nie może być dłuższa niż 35 znaków",
-  "Max 35 characters": "Maksymalnie 35 znaków"
+  "Name can't be longer then 50 characters": "Nazwa nie może być dłuższa niż 50 znaków",
+  "Max 35 characters": "Maksymalnie 35 znaków",
+
+  "Error ocurred while adding to do, please try again.": "Przy dodawaniu to do wystąpił błąd, spróbuj ponownie.",
+  "Error ocurred while completing to do, please try again.": "Przy ukończeniu to do wystąpił błąd, spróbuj ponownie.",
+  "Error ocurred while updating to do, please try again.": "Przy edytowaniu to do wystąpił błąd, spróbuj ponownie.",
+  "Error ocurred while fetching to do, please try again.": "Przy ładowaniu to do wystąpił błąd, spróbuj ponownie.",
+
+  "Add to do": "Dodaj to do",
+  "Complete to do": "Ukończ to do",
+  "Edit to do": "Edytuj to do",
+
+  "To do was added successfully.": "To do zostało dodane.",
+  "To do was completed successfully.": "To do zostało ukończone.",
+  "To do was edited successfully.": "To do zostało edytowane.",
+
+  "Add sub task": "Dodaj podrzędne zadanie",
+  "Complete sub task": "Ukończ podrzędne zadanie",
+
+  "Sub task was added successfully.": "Podrzędne zadanie zostało dodane.",
+  "Sub task was completed successfully.": "Podrzędne zadanie zostało ukończone",
+  "Friends": "Znajomi",
+  "Search users...": "Wyszukaj użytkowników...",
+  "Add friends": "Dodaj znajomych",
+  "No options to display": "Brak opcji do wyświetlenia",
+  "Success": "Sukces",
+  "Internal error": "Błąd wewnętrzny",
+  "Friend was added successfully.": "Dodano przyjaciela.",
+  "Error ocurred while adding user to the friend list, please try again.": "Wystąpił błąd podczas dodawania użytkownika do listy przyjaciół, spróbuj ponownie.",
+  "Error ocurred while deleting user from the friend list, please try again.": "Wystąpił błąd podczas usuwania użytkownika z listy przyjaciół, spróbuj ponownie.",
+  "Error ocurred while fetching friends, please try again.": "Wystąpił błąd podczas ładowania przyjaciół, spróbuj ponownie.",
+  "Error ocurred while fetching users, please try again.": "Wystąpił błąd podczas ładowania użytkowników, spróbuj ponownie.",
+  "Delete": "Usuń",
+  "Are you sure you want to delete this friend from friend list?": "Jesteś pewny że chcesz usunąć tego znajomego z listy znajomych?"
 }

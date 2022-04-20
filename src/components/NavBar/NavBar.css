@@ -84,8 +84,8 @@
   width: 6.55rem;
 }
 
-.nav-bar .nav-bar-items.lng-pl .item.notes:hover {
-  width: 6.35rem;
+.nav-bar .nav-bar-items.lng-pl .item.friends:hover {
+  width: 6.8rem;
 }
 
 .nav-bar .nav-bar-items.lng-pl .item.help:hover {
@@ -107,11 +107,11 @@
 }
 
 .nav-bar .nav-bar-items.lng-en .item.history:hover {
-  width: 6.25rem;
+  width: 6.3rem;
 }
 
-.nav-bar .nav-bar-items.lng-en .item.notes:hover {
-  width: 5.5rem;
+.nav-bar .nav-bar-items.lng-en .item.friends:hover {
+  width: 6.45rem;
 }
 
 .nav-bar .nav-bar-items.lng-en .item.help:hover {

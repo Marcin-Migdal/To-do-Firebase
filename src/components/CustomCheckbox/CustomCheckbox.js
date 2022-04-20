@@ -1,6 +1,6 @@
 import { Checkbox } from 'primereact/checkbox';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import './CustomCheckbox.css';
 
 export const CustomCheckbox = ({ className = '', label, name, onChange, width = '100%' }) => {
