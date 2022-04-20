@@ -2,7 +2,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
-import { App } from 'components';
+import { App } from 'App/App';
 import './index.css';
 import './i18n';
 

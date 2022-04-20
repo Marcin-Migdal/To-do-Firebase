@@ -1,5 +1,6 @@
 import { InputText } from 'primereact/inputtext';
 import { useTranslation } from 'react-i18next';
+
 import './CustomInput.css';
 
 export const CustomInput = ({
@@ -22,7 +23,7 @@ export const CustomInput = ({
   const id = `input-id-${name}`;
 
   return (
-    <div style={style} className={`${className} custom-input no-label  ${error ? 'error' : ''}`}>
+    <div style={style} className={`${className} custom-input ${error ? 'error' : ''}`}>
       {!placeholder ? (
         <>
           <label style={{ width: labelWidth }} className="label" htmlFor={id}>
@@ -40,8 +41,8 @@ export const CustomInput = ({
         id={id}
         name={name}
         value={value}
-        onChange={e => onChange(e.target)}
-        onBlur={target => onBlur && onBlur(target)}
+        onChange={onChange}
+        onBlur={e => onBlur && onBlur(e)}
         onKeyPress={handleKeyPress}
         autoComplete={autoComplete}
       />

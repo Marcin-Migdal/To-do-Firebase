@@ -1,29 +1,26 @@
-.sub-list {
+.edit-to-do-modal .sub-list {
+  overflow-y: scroll;
   max-height: 10rem;
 }
 
-.edit-to-do-modal .sub-list {
-  overflow-y: scroll;
-}
-
-.sub-list::-webkit-scrollbar {
+.edit-to-do-modal .sub-list::-webkit-scrollbar {
   width: 10px;
 }
 
-.sub-list::-webkit-scrollbar-thumb {
+.edit-to-do-modal .sub-list::-webkit-scrollbar-thumb {
   background-color: #c1ddf0;
   border-radius: 30px;
 }
 
-.sub-list li {
+.edit-to-do-modal .sub-list li {
   margin-left: 1.5rem;
 }
 
-.sub-list li:first-child {
+.edit-to-do-modal .sub-list li:first-child {
   margin-top: 0.25rem;
 }
 
-.sub-list .content {
+.edit-to-do-modal .sub-list .content {
   position: relative;
   display: flex;
   align-items: center;
@@ -32,7 +29,7 @@
   margin-left: -0.25rem;
 }
 
-.sub-list .content input {
+.edit-to-do-modal .sub-list .content input {
   width: 16rem;
   padding: 0 0.5rem;
   height: 26px;
@@ -48,7 +45,12 @@
   text-overflow: ellipsis;
 }
 
-.sub-list .content .error-label {
+.edit-to-do-modal .sub-list .content input:disabled {
+  background-color: #f7f7f7;
+  color: #999 !important;
+}
+
+.edit-to-do-modal .sub-list .content .error-label {
   position: absolute;
   left: 92%;
   width: 55%;
@@ -56,13 +58,13 @@
   color: red;
 }
 
-.app.dark-mode .sub-list .content input {
+.app.dark-mode .edit-to-do-modal .sub-list .content input {
   color: inherit;
   border: 1px solid #85bae0;
   background-color: transparent;
 }
 
-.app.dark-mode .sub-list .content input:focus {
+.app.dark-mode .edit-to-do-modal .sub-list .content input:focus {
   box-shadow: 0 0 0 0.15rem #a6d5fa;
 }
 
@@ -71,7 +73,7 @@
   margin-bottom: 0.75rem;
 }
 
-.sub-list .content .icon {
+.edit-to-do-modal .sub-list .content .icon {
   height: 1.7rem;
   width: 1.7rem;
   font-size: 1.3rem;
@@ -79,6 +81,6 @@
   border-radius: 6px;
 }
 
-.sub-list .content .icon:hover {
+.edit-to-do-modal .sub-list .content .icon:hover {
   background-color: #e6e6e6;
 }

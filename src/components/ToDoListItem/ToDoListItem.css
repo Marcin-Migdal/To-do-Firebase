@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  width: 50rem;
+  width: 100%;
   height: 2.5rem;
   margin-bottom: 0.35rem;
   border: 1px solid #aed1ea;
@@ -81,17 +81,20 @@
   background-color: #71afda;
 }
 
+.to-do .list .item .toggle-arrow-icon.placeholder {
+  cursor: inherit;
+}
+
 .to-do .list .item .name {
+  width: 100%;
   font-size: 1.45rem;
   margin-top: -2px;
-  width: 80%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .to-do .list .item .date {
-  width: 12%;
   margin-right: 0.35rem;
   font-size: 1.15rem;
 }
@@ -111,13 +114,15 @@
 }
 
 .to-do .list .item .item-top-container .completed-btn {
-  height: 1.8rem;
+  height: 1.8rem !important;
+  width: 1.8rem !important;
   font-size: 1.4rem;
   padding: 0 0.075rem;
 }
 
 .to-do .list .item .item-expanded-container .completed-btn {
   height: 1.35rem !important;
+  width: 1.35rem !important;
   font-size: 1rem !important;
   padding: 0 0.075rem !important;
 }
@@ -166,19 +171,18 @@
   border: none;
   outline: none;
   height: 1px;
-  width: 100%;
+  width: 92%;
+  margin-left: 4%;
+  margin-top: 0.25rem;
   background-color: white;
 }
 
-.item-expanded-container .section-container {
-  padding: 0.75rem 0 0.75rem 0.5rem;
+.item .item-expanded-container .sub-list {
+  padding: 0.5rem 0 0.5rem 0.5rem;
 }
 
-.section-container .description {
+.item .item-expanded-container .description {
   display: block;
   margin-left: 1.5rem;
-}
-
-.section-container .section-title {
-  margin-bottom: 0.25rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
 }

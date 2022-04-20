@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
 import { validateSignUp } from 'helpers/validateAuth';
-import { SignForm, CustomInputWithState } from 'components';
-import { handleSignUpWithEmail } from 'api/fireBaseApi';
+import { SignForm, CustomInputFloatingLabel } from 'components';
+import { signUpWithEmail } from 'api/userApi';
 import { validationSchema } from './formikConfig';
 import { useToDo } from 'context';
 import { validateValue } from 'helpers/validateValue';
@@ -14,11 +14,11 @@ export const SignUp = () => {
   const [formData, setFormData] = useState({ userName: '', email: '', password: '', verifyPassword: '' });
   const [errors, setErrors] = useState();
 
-  const handleChangeFormData = async target => {
-    const { name, value } = target;
+  const handleChangeFormData = async e => {
+    const { name, value } = e.target;
 
     setFormData({ ...formData, [name]: value });
-    validateValue(target, validationSchema, errors, e => setErrors(e), formData?.password);
+    validateValue(e.target, validationSchema, errors, e => setErrors(e), formData?.password);
   };
 
   const handleKeyPress = e => {
@@ -32,7 +32,7 @@ export const SignUp = () => {
     const errors = await validateSignUp(Object.keys(formData), _formData, validationSchema);
     setErrors(errors);
 
-    !errors && handleSignUpWithEmail(_formData, i18n.language, handleSignUpError);
+    !errors && signUpWithEmail(_formData, i18n.language, handleSignUpError);
   };
 
   const handleSignUpError = (name, message) => {
@@ -44,35 +44,35 @@ export const SignUp = () => {
   };
 
   return (
-    <SignForm handleAuth={handleSignUp} lng={i18n.language} disableForm={!!errors}>
-      <CustomInputWithState
+    <SignForm handleAuth={handleSignUp} disableForm={!!errors}>
+      <CustomInputFloatingLabel
         error={errors?.userName}
         label="Username"
         name="userName"
-        onBlur={target => handleChangeFormData(target)}
+        onBlur={handleChangeFormData}
         handleKeyPress={handleKeyPress}
       />
-      <CustomInputWithState
+      <CustomInputFloatingLabel
         error={errors?.email}
         label="Email"
         name="email"
-        onBlur={target => handleChangeFormData(target)}
+        onBlur={handleChangeFormData}
         handleKeyPress={handleKeyPress}
       />
-      <CustomInputWithState
+      <CustomInputFloatingLabel
         error={errors?.password}
         label="Password"
         name="password"
         type="password"
-        onBlur={target => handleChangeFormData(target)}
+        onBlur={handleChangeFormData}
         handleKeyPress={handleKeyPress}
       />
-      <CustomInputWithState
+      <CustomInputFloatingLabel
         error={errors?.verifyPassword}
         label="Repeat password"
         name="verifyPassword"
         type="password"
-        onBlur={target => handleChangeFormData(target)}
+        onBlur={handleChangeFormData}
         handleKeyPress={handleKeyPress}
       />
     </SignForm>

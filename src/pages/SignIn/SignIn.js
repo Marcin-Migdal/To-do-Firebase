@@ -1,22 +1,22 @@
 import { useState } from 'react';
 
-import { CustomInputWithState, SignForm } from 'components';
-import { handleSignInWithEmail } from 'api/fireBaseApi';
+import { CustomInputFloatingLabel, SignForm } from 'components';
+import { signInWithEmail } from 'api/userApi';
+import { validateValue } from 'helpers/validateValue';
 import { validateSignIn } from 'helpers/validateAuth';
 import { validationSchema } from './formikConfig';
 import { useToDo } from 'context';
-import { validateValue } from 'helpers/validateValue';
 
 export const SignIn = () => {
   const { showToast } = useToDo();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState();
 
-  const handleChangeFormData = async target => {
-    const { name, value } = target;
+  const handleChangeFormData = async e => {
+    const { name, value } = e.target;
 
     setFormData({ ...formData, [name]: value });
-    validateValue(target, validationSchema, errors, e => setErrors(e), formData?.password);
+    validateValue(e.target, validationSchema, errors, e => setErrors(e), formData?.password);
   };
 
   const handleKeyPress = e => {
@@ -30,7 +30,7 @@ export const SignIn = () => {
     const errors = await validateSignIn(Object.keys(formData), _formData, validationSchema);
     setErrors(errors);
 
-    !errors && handleSignInWithEmail(_formData, handleSignInError);
+    !errors && signInWithEmail(_formData, handleSignInError);
   };
 
   const handleSignInError = (name, message) => {
@@ -43,19 +43,19 @@ export const SignIn = () => {
 
   return (
     <SignForm formData={formData} handleAuth={handleSignIn} disableForm={!!errors || !formData}>
-      <CustomInputWithState
+      <CustomInputFloatingLabel
         error={errors?.email}
         label="Email"
         name="email"
-        onBlur={target => handleChangeFormData(target)}
+        onBlur={handleChangeFormData}
         handleKeyPress={handleKeyPress}
       />
-      <CustomInputWithState
+      <CustomInputFloatingLabel
         error={errors?.password}
         label="Password"
         name="password"
         type="password"
-        onBlur={target => handleChangeFormData(target)}
+        onBlur={handleChangeFormData}
         handleKeyPress={handleKeyPress}
       />
     </SignForm>

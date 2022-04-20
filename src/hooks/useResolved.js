@@ -4,7 +4,8 @@ export const useResolved = (...values) => {
   const [resolved, setResolved] = useState(false);
 
   useEffect(() => {
-    setResolved(values.every(v => v !== undefined));
+    const _resolved = values.every(v => v !== undefined);
+    resolved !== _resolved && setResolved(_resolved);
   }, [...values]);
 
   return resolved;

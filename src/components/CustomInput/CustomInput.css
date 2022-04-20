@@ -2,10 +2,10 @@
   position: relative;
 }
 
-.custom-input.no-label {
+.custom-input {
   margin-bottom: 1rem;
 }
-.custom-input.no-label .label {
+.custom-input .label {
   margin-bottom: 5px;
 }
 
@@ -15,7 +15,12 @@
 
 .custom-input .p-inputtext {
   background-color: inherit;
+  border-color: #85bae0;
   width: 100%;
+}
+
+.custom-input.error .p-inputtext {
+  border-color: red !important;
 }
 
 .p-float-label input.p-filled ~ label,
@@ -29,7 +34,6 @@
 
 .app.dark-mode .custom-input .p-inputtext {
   color: white !important;
-  border-color: #85bae0;
 }
 
 .input-error-label,

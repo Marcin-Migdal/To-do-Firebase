@@ -3,8 +3,6 @@ export const validateValue = async (target, validationSchema, errors, handleSetE
 
   try {
     const trimValue = value?.trim();
-    console.log(validationProperty);
-    console.log(name);
     await validationSchema[validationProperty || name].validate(trimValue.length > 0 ? value : trimValue, password);
 
     if (errors?.[name]) {
