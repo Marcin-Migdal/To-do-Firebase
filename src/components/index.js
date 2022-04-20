@@ -10,4 +10,3 @@ export * from './HelpModal';
 export * from './LoadingIndicator';
 export * from './CustomTextarea';
 export * from './CustomIcon';
-export * from './FriendCard';
